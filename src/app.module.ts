@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { configValidationSchema } from './config/config.schema';
 import { DatabaseModule } from './database/database.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { StripeModule } from './stripe/stripe.module';
 
 @Module({
   imports: [
@@ -13,6 +15,7 @@ import { DatabaseModule } from './database/database.module';
       validationSchema: configValidationSchema,
     }),
     DatabaseModule,
+    StripeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
