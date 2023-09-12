@@ -34,20 +34,40 @@ export class StripeRepository {
 
       return response.id;
     } catch (error) {
-      console.log(`Error: ${error}`);
+      console.log(`Create customer id error: ${error}`);
     }
   }
 
   // Retrieve a customer
   async retrieveCustomer(customerId: string) {
-    const customer = (await this.stripe.customers.retrieve(
-      customerId,
-    )) as ICustomer;
-    if (!customer?.id) {
-      throw new ForbiddenException(
-        `cannot get the customer ${customerId} at this time`,
-      );
+    try {
+      const response = (await this.stripe.customers.retrieve(
+        customerId,
+      )) as ICustomer;
+      if (!response?.id) {
+        throw new ForbiddenException(
+          `cannot get the customer ${customerId} at this time`,
+        );
+      }
+      return response;
+    } catch (err) {
+      console.log(`Retrieve customer error: ${err}`);
     }
-    return customer;
+  }
+
+  // Attach payment method id
+  async attachPaymentMethodId(paymentmethodId: string, customerId: string) {
+    try {
+      const response = await this.stripe.paymentMethods.attach(
+        paymentmethodId,
+        {
+          customer: customerId,
+        },
+      );
+
+      return response;
+    } catch (err) {
+      console.log(`Attach payment method id error: ${err}`);
+    }
   }
 }

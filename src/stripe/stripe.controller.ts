@@ -35,7 +35,7 @@ export class StripeController {
     const createStripeSubscriptionDto: CreateStripeSubscriptionDto = {
       userId: '79b54e33-61d9-4166-afdc-0634a8bdc7b0',
       amount: 50,
-      paymentMethodId: 'paymentMethodIdNo01',
+      paymentMethodId: 'pm_1NpUm0Ap5WSNbPsaKYGLA2hR',
       paymentType: PaymentType.MONTHLY,
       priceId: 'priceIdNo123',
       country_code: 'LK',

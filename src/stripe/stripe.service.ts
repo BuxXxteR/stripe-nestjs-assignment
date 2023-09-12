@@ -41,13 +41,13 @@ export class StripeService {
       savePaymentMethod,
     } = createStripeSubscriptionDto;
 
-    let user = await this.userRepository.findById(userId);
+    const user = await this.userRepository.findById(userId);
 
     if (!user) {
       throw new ForbiddenException(`User not found`);
     }
 
-    if (!user.stripe_customer_id || user.stripe_customer_id == '') {
+    if (!user.stripe_customer_id || user.stripe_customer_id === '') {
       const createdCustomerId = await this.stripeRepository.createCustomerId();
 
       if (createdCustomerId) {
@@ -58,12 +58,23 @@ export class StripeService {
       }
     }
 
-    user = await this.userRepository.findById(userId);
-
     const customer = await this.stripeRepository.retrieveCustomer(
       user.stripe_customer_id,
     );
 
-    console.log(customer);
+    if (user.stripe_customer_id) {
+      const attchedPaymentMethod =
+        await this.stripeRepository.attachPaymentMethodId(
+          paymentMethodId,
+          user.stripe_customer_id,
+        );
+
+      console.log(attchedPaymentMethod, 'attchedPaymentMethod');
+    }
+
+    const { default_source } = customer;
+
+    if (paymentMethodId !== default_source) {
+    }
   }
 }

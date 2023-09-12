@@ -9,6 +9,7 @@ export class UserRepository {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
+
   // Find user by user id
   async findById(id: string): Promise<User> {
     try {
