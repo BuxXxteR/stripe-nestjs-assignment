@@ -1,7 +1,7 @@
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { PaymentType } from '../types/payment.types';
 
-export class CreateMembershipStripeDto {
+export class CreateStripeSubscriptionDto {
   @IsNumber()
   @IsNotEmpty({ message: 'Please add userId' })
   userId: string;

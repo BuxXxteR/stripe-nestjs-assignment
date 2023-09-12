@@ -12,4 +12,8 @@ export const configValidationSchema = Joi.object({
   // DB_REGION: Joi.string().required(),
   // DB_READER_HOST: Joi.string().required(),
   // DB_WRITER_HOST: Joi.string().required(),
+
+  STRIPE_SK: Joi.string().required(),
+  STRIPE_WEBHOOK_ENDPOINT_SK: Joi.string().required(),
+  STRIPE_USE_TEST_MODE: Joi.string().required(),
 });

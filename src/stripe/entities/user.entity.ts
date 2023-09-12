@@ -33,6 +33,9 @@ export class User {
   @Column({ default: false })
   is_verified: boolean;
 
+  @Column({ nullable: true })
+  stripe_customer_id: string;
+
   @Column({ type: 'enum', enum: Status, default: Status.PENDING })
   status: Status;
 
