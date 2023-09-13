@@ -30,7 +30,7 @@
     "mysql2": "^3.6.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
-    "stripe": "^13.4.0",
+    "stripe": "^13.5.0",
     "typeorm": "^0.3.17"
   },
   "devDependencies": {

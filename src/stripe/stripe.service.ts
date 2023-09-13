@@ -58,23 +58,29 @@ export class StripeService {
       }
     }
 
+    const updatedUser = await this.userRepository.findById(userId);
+
     const customer = await this.stripeRepository.retrieveCustomer(
-      user.stripe_customer_id,
+      updatedUser.stripe_customer_id,
     );
 
-    if (user.stripe_customer_id) {
-      const attchedPaymentMethod =
-        await this.stripeRepository.attachPaymentMethodId(
-          paymentMethodId,
-          user.stripe_customer_id,
-        );
+    // const createdPaymentMethod =
+    const createdPaymentMethod =
+      await this.stripeRepository.createPaymentMethod();
 
-      console.log(attchedPaymentMethod, 'attchedPaymentMethod');
-    }
+    console.log(createdPaymentMethod, 'createdPaymentMethod');
 
-    const { default_source } = customer;
+    // if (updatedUser.stripe_customer_id && createdPaymentMethod) {
+    //   const attchedPaymentMethod =
+    //     await this.stripeRepository.attachPaymentMethodId(
+    //       paymentMethodId,
+    //       updatedUser.stripe_customer_id,
+    //     );
+    // }
 
-    if (paymentMethodId !== default_source) {
-    }
+    // const { default_source } = customer;
+
+    // if (paymentMethodId !== default_source) {
+    // }
   }
 }

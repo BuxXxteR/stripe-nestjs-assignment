@@ -34,7 +34,7 @@ export class StripeRepository {
 
       return response.id;
     } catch (error) {
-      console.log(`Create customer id error: ${error}`);
+      throw new Error(`Create customer id error: ${error}`);
     }
   }
 
@@ -51,7 +51,7 @@ export class StripeRepository {
       }
       return response;
     } catch (err) {
-      console.log(`Retrieve customer error: ${err}`);
+      throw new Error(`Retrieve customer error: ${err}`);
     }
   }
 
@@ -67,7 +67,26 @@ export class StripeRepository {
 
       return response;
     } catch (err) {
-      console.log(`Attach payment method id error: ${err}`);
+      throw new Error(`Attach payment method id error: ${err}`);
+    }
+  }
+
+  // Create payment method
+  async createPaymentMethod() {
+    try {
+      const response = await this.stripe.paymentMethods.create({
+        type: 'card',
+        card: {
+          number: '4242424242424242',
+          exp_month: 8,
+          exp_year: 2024,
+          cvc: '3141',
+        },
+      });
+
+      return response;
+    } catch (err) {
+      throw new Error(`Create payment method error: ${err}`);
     }
   }
 }
