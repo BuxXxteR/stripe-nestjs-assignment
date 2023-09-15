@@ -2,10 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Status } from '../types/user.types';
+import { Payment } from './payment.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -38,6 +40,12 @@ export class User {
 
   @Column({ type: 'enum', enum: Status, default: Status.PENDING })
   status: Status;
+
+  @Column({ nullable: true })
+  stripe_default_payment_method: string;
+
+  @OneToMany(() => Payment, (payment) => payment.user, { cascade: true })
+  payments: Payment[];
 
   @CreateDateColumn({
     type: 'timestamp',

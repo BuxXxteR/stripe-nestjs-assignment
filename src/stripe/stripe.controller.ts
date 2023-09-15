@@ -1,8 +1,9 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Headers } from '@nestjs/common';
 import { StripeService } from './stripe.service';
 import { CreateStripeSubscriptionDto } from './dtos/createStripeSubscription.dto';
 import { PaymentType } from './types/payment.types';
 import { CreateUserDto } from './dtos/createUser.dto';
+import { BodyDto } from './dtos/body.dto';
 
 @Controller('stripe')
 export class StripeController {
@@ -30,12 +31,11 @@ export class StripeController {
   // Create subscription controller
   // URL : /stripe/create-subscription
   @Post('create-subscription')
-  async createSubscription() {
-    // @Body() createMembershipStripeDto: CreateMembershipStripeDto,
+  async createSubscription(@Body() bodyDto: BodyDto) {
     const createStripeSubscriptionDto: CreateStripeSubscriptionDto = {
-      userId: '79b54e33-61d9-4166-afdc-0634a8bdc7b0',
+      userId: 'd2512e02-ea7c-4849-8a17-e25cf1186b67',
       amount: 50,
-      paymentMethodId: 'pm_1NpUm0Ap5WSNbPsaKYGLA2hR',
+      paymentMethodId: bodyDto.id,
       paymentType: PaymentType.MONTHLY,
       priceId: 'priceIdNo123',
       country_code: 'LK',
@@ -46,5 +46,15 @@ export class StripeController {
     return await this.stripeService.createMembership(
       createStripeSubscriptionDto,
     );
+  }
+
+  // Listen to webhook
+  // URL : /stripe/subscription-webhook
+  @Post(`subscription-webhook`)
+  async handleSubscriptionWebhook(
+    @Body() data: any,
+    @Headers('stripe-signature') sig: string,
+  ) {
+    return await this.stripeService.handleSubscriptionWebhook(data, sig);
   }
 }

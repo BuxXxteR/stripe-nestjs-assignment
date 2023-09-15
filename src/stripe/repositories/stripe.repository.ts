@@ -5,12 +5,16 @@ import { Repository } from 'typeorm';
 import Stripe from 'stripe';
 import { ConfigService } from '@nestjs/config';
 import { ICustomer } from '../types/stripe.types';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class StripeRepository {
   private stripe: Stripe;
 
-  constructor(private readonly configService: ConfigService) {
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly userRepository: UserRepository,
+  ) {
     this.stripe = new Stripe(this.configService.get<string>('STRIPE_SK'), {
       apiVersion: '2023-08-16',
     });
@@ -87,6 +91,61 @@ export class StripeRepository {
       return response;
     } catch (err) {
       throw new Error(`Create payment method error: ${err}`);
+    }
+  }
+
+  // Update default payment method
+  async updateDefaultPaymentmethod(userId: string, paymentMethodId: string) {
+    try {
+      const user = await this.userRepository.findById(userId);
+
+      if (!user) {
+        throw new ForbiddenException(`User not found`);
+      }
+
+      const { id } = await this.stripe.customers.update(
+        user.stripe_customer_id,
+        {
+          invoice_settings: {
+            default_payment_method: paymentMethodId,
+          },
+        },
+      );
+
+      if (!id) {
+        throw new ForbiddenException(
+          `Cannot update payment method at this time`,
+        );
+      }
+
+      return {
+        id: id,
+      };
+    } catch (err) {
+      throw new Error(`Update default payment method error: ${err}`);
+    }
+  }
+
+  // Create stripe subscriptioin
+  async createSubscription(user: User) {
+    try {
+      const subscriptionIntent = await this.stripe.subscriptions.create({
+        customer: user.stripe_customer_id,
+        items: [
+          {
+            price: 'price_1NpVF7Ap5WSNbPsaU4hAZhtp',
+          },
+        ],
+        payment_settings: {
+          payment_method_types: ['card'],
+          save_default_payment_method: 'on_subscription',
+        },
+        expand: ['latest_invoice.payment_intent'],
+      });
+
+      return subscriptionIntent;
+    } catch (err) {
+      throw new Error(`create stripe subscription error: ${err}`);
     }
   }
 }
