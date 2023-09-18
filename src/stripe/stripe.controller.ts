@@ -4,6 +4,7 @@ import { CreateStripeSubscriptionDto } from './dtos/createStripeSubscription.dto
 import { PaymentType } from './types/payment.types';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { BodyDto } from './dtos/body.dto';
+import { Request } from 'express';
 
 @Controller('stripe')
 export class StripeController {
@@ -33,7 +34,7 @@ export class StripeController {
   @Post('create-subscription')
   async createSubscription(@Body() bodyDto: BodyDto) {
     const createStripeSubscriptionDto: CreateStripeSubscriptionDto = {
-      userId: 'd2512e02-ea7c-4849-8a17-e25cf1186b67',
+      userId: '79b54e33-61d9-4166-afdc-0634a8bdc7b0',
       amount: 50,
       paymentMethodId: bodyDto.id,
       paymentType: PaymentType.MONTHLY,
@@ -42,7 +43,6 @@ export class StripeController {
       savePaymentMethod: true,
     };
 
-    console.log('create-subscription');
     return await this.stripeService.createMembership(
       createStripeSubscriptionDto,
     );
