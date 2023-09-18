@@ -34,7 +34,7 @@ export class StripeController {
   @Post('create-subscription')
   async createSubscription(@Body() bodyDto: BodyDto) {
     const createStripeSubscriptionDto: CreateStripeSubscriptionDto = {
-      userId: '79b54e33-61d9-4166-afdc-0634a8bdc7b0',
+      userId: '168964c9-e902-4dd8-ac56-d5e182cb54b9',
       amount: 50,
       paymentMethodId: bodyDto.id,
       paymentType: PaymentType.MONTHLY,
