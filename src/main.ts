@@ -16,6 +16,8 @@ async function bootstrap() {
       configService.get('COINBUREAU_RELEASE_URL'),
       configService.get('COINBUREAU_TEST_URL'),
       configService.get('COINBUREAU_URL'),
+      'http://localhost:3000',
+      'http://stripe-nestjs-assignment-production.up.railway.app',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
