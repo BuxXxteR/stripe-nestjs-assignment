@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Headers } from '@nestjs/common';
+import { Body, Controller, Post, Headers, Get } from '@nestjs/common';
 import { StripeService } from './stripe.service';
 import { CreateStripeSubscriptionDto } from './dtos/createStripeSubscription.dto';
 import { PaymentType } from './types/payment.types';
@@ -10,7 +10,7 @@ import { Request } from 'express';
 export class StripeController {
   constructor(private readonly stripeService: StripeService) {}
 
-  @Post('create-user')
+  @Get('create-user')
   async createUser() {
     const createUserDto: CreateUserDto = {
       first_name: 'Nipuna',
