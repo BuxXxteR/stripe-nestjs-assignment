@@ -8,12 +8,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
-  // app.enableCors({
-  //   origin: ['http://localhost:3000'],
-  //   preflightContinue: false,
-  //   credentials: true,
-  // });
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:3000'],
+    preflightContinue: false,
+    credentials: true,
+  });
   app.useGlobalPipes(new ValidationPipe());
   app.use(
     '/stripe/subscription-webhook',
