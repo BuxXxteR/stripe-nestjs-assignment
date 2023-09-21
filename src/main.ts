@@ -10,7 +10,7 @@ async function bootstrap() {
   const port = configService.get('PORT');
   app.enableCors({
     origin: ['http://localhost:3000'],
-    preflightContinue: true,
+    preflightContinue: false,
     credentials: true,
   });
   app.useGlobalPipes(new ValidationPipe());
