@@ -110,7 +110,6 @@ export class PaypalService {
       status: Status.PENDING,
     });
 
-    console.log(`new subscription ${payment.id} ${payment.payment_id}`);
     return payment;
   }
 
