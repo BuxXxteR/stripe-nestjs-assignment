@@ -10,18 +10,18 @@ async function bootstrap() {
   const port = configService.get('PORT');
   app.enableCors({
     origin: [
-      configService.get('FRONTEND_BASE_URL'),
-      configService.get('RAILWAY_URL'),
-      configService.get('LOCALHOST_FRONTEND_BASE_URL'),
-      configService.get('LOCALHOST_FRONTEND_BASE_URL1'),
-      configService.get('COINBUREAU_RELEASE_URL'),
-      configService.get('COINBUREAU_TEST_URL'),
-      configService.get('COINBUREAU_URL'),
+      configService.get<string>('FRONTEND_BASE_URL'),
+      configService.get<string>('RAILWAY_URL'),
+      configService.get<string>('LOCALHOST_FRONTEND_BASE_URL'),
+      configService.get<string>('LOCALHOST_FRONTEND_BASE_URL1'),
+      configService.get<string>('COINBUREAU_RELEASE_URL'),
+      configService.get<string>('COINBUREAU_TEST_URL'),
+      configService.get<string>('COINBUREAU_URL'),
       'http://localhost:3000',
       'http://stripe-nestjs-assignment-production.up.railway.app',
     ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
+    // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    // preflightContinue: false,
     credentials: true,
     allowedHeaders: [
       'Content-Type',
