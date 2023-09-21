@@ -9,9 +9,20 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
   app.enableCors({
-    origin: ['http://localhost:3000'],
+    origin: [configService.get<string>('FRONTEND_BASE_URL')],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     credentials: true,
+    allowedHeaders: [
+      'Content-Type',
+      'Origin',
+      'X-Requested-With',
+      'Accept',
+      'x-client-key',
+      'x-client-token',
+      'x-client-secret',
+      'Authorization',
+    ],
   });
   app.useGlobalPipes(new ValidationPipe());
   app.use(
