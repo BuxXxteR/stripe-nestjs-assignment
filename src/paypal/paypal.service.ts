@@ -136,7 +136,7 @@ export class PaypalService {
 
     const verifySignResponse = await firstValueFrom(verifyWebhookSign);
 
-    console.log(`verifySignResponse: ${verifySignResponse}`);
+    console.log(`verifySignResponse: ${verifySignResponse.headers.body}`);
 
     switch (verifySignResponse.headers.body.event_type) {
       case 'BILLING.SUBSCRIPTION.CREATED':
