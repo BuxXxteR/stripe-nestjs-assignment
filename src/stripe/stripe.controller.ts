@@ -9,9 +9,9 @@ import { BodyDto } from './dtos/body.dto';
 export class StripeController {
   constructor(private readonly stripeService: StripeService) {}
 
-   // Create user
+  // Create user
   // URL : /stripe/create-user
-  @Post ('create-user')
+  @Post('create-user')
   async createUser() {
     const createUserDto: CreateUserDto = {
       first_name: 'Nipuna',
@@ -35,7 +35,7 @@ export class StripeController {
   @Post('create-subscription')
   async createSubscription(@Body() bodyDto: BodyDto) {
     const createStripeSubscriptionDto: CreateStripeSubscriptionDto = {
-      userId: '311bc0a3-b9da-44ef-b35d-7450b6f223f9',
+      userId: 'edc4abc1-7b41-4e07-b67f-b88e019b6321',
       amount: 50,
       paymentMethodId: bodyDto.id,
       paymentType: PaymentType.MONTHLY,

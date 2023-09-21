@@ -6,6 +6,7 @@ import { configValidationSchema } from './config/config.schema';
 import { DatabaseModule } from './database/database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StripeModule } from './stripe/stripe.module';
+import { PaypalModule } from './paypal/paypal.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { StripeModule } from './stripe/stripe.module';
     }),
     DatabaseModule,
     StripeModule,
+    PaypalModule,
   ],
   controllers: [AppController],
   providers: [AppService],
