@@ -22,10 +22,6 @@ export class PaypalController {
     @Res({ passthrough: true }) res: Response,
     @Body() createSubscriptionPaymentDto: CreateSubscriptionPaymentDto,
   ) {
-    console.log('RAN THIS ONE');
-
-    console.log(createSubscriptionPaymentDto, 'createSubscriptionPaymentDto');
-
     return await this.paypalService.createSubscriptionPayment(
       createSubscriptionPaymentDto,
     );
