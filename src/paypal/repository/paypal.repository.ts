@@ -106,7 +106,7 @@ export class PaypalRepository {
         },
       );
 
-      return response;
+      return firstValueFrom(response);
     } catch (err) {
       console.log(
         `Error in verify webhook sign: ${err} time=${new Date().getTime()}`,
