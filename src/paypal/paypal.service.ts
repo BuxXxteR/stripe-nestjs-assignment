@@ -134,7 +134,7 @@ export class PaypalService {
       actualData,
     );
 
-    console.log(`verifySignResponse: ${verifyWebhookSign.headers}`);
+    console.log(`verifySignResponse: ${verifyWebhookSign.data}`);
 
     switch (verifyWebhookSign.headers.body.event_type) {
       case 'BILLING.SUBSCRIPTION.CREATED':
