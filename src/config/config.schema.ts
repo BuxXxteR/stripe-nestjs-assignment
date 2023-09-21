@@ -7,7 +7,6 @@ export const configValidationSchema = Joi.object({
   BASE_URL: Joi.string().required(),
   FRONTEND_BASE_URL: Joi.string().required(),
   LOCALHOST_FRONTEND_BASE_URL: Joi.string().required(),
-  LOCALHOST_FRONTEND_BASE_URL1: Joi.string().required(),
 
   DB_TYPE: Joi.string().required(),
   DB_HOST: Joi.string().required(),
