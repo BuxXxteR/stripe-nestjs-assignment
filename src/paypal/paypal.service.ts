@@ -142,7 +142,10 @@ export class PaypalService {
     if (verifyWebhookSign.data.verification_status === 'SUCCESS') {
       console.log(verifyWebhookSign.data, 'verifyWebhookSign.data');
       console.log(verifyWebhookSign.headers, 'verifyWebhookSign.headers');
-      console.log(verifyWebhookSign.headers.body, 'verifyWebhookSign.headers');
+      console.log(
+        verifyWebhookSign.headers.body,
+        'verifyWebhookSign.headers.body',
+      );
       try {
         switch (verifyWebhookSign.data.body.event_type) {
           case 'BILLING.SUBSCRIPTION.CREATED':
