@@ -141,30 +141,39 @@ export class PaypalService {
       console.log(subs, 'SUBS');
 
       try {
-        switch (headers.body.event_type) {
-          case 'BILLING.SUBSCRIPTION.CREATED':
-            console.log('BILLING.SUBSCRIPTION.CREATED***');
+        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.CREATED') {
+          console.log('BILLING.SUBSCRIPTION.CREATED***');
+        }
 
-          case 'BILLING.SUBSCRIPTION.ACTIVATED':
-            console.log('BILLING.SUBSCRIPTION.ACTIVATED***');
+        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.ACTIVATED') {
+          console.log('BILLING.SUBSCRIPTION.ACTIVATED***');
+        }
 
-          case 'BILLING.SUBSCRIPTION.RE-ACTIVATED':
-            console.log('BILLING.SUBSCRIPTION.RE-ACTIVATED***');
+        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.RE-ACTIVATED') {
+          console.log('BILLING.SUBSCRIPTION.RE-ACTIVATED***');
+        }
 
-          case 'BILLING.SUBSCRIPTION.CANCELLED':
-            console.log('BILLING.SUBSCRIPTION.CANCELLED***');
+        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.CANCELLED') {
+          console.log('BILLING.SUBSCRIPTION.CANCELLED***');
+        }
 
-          case 'BILLING.SUBSCRIPTION.EXPIRED':
-            console.log('BILLING.SUBSCRIPTION.EXPIRED***');
+        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.EXPIRED') {
+          console.log('BILLING.SUBSCRIPTION.EXPIRED***');
+        }
 
-          case 'BILLING.SUBSCRIPTION.SUSPENDED':
-            console.log('BILLING.SUBSCRIPTION.SUSPENDED***');
+        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.SUSPENDED') {
+          console.log('BILLING.SUBSCRIPTION.SUSPENDED***');
+        }
 
-          case 'BILLING.SUBSCRIPTION.PAYMENT.FAILED':
-            console.log('BILLING.SUBSCRIPTION.PAYMENT.FAILED***');
+        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.PAYMENT.FAILED') {
+          console.log('BILLING.SUBSCRIPTION.PAYMENT.FAILED***');
+        }
 
-          case 'PAYMENT.SALE.COMPLETED':
-            console.log('PAYMENT.SALE.COMPLETED***');
+        if (headers.body.event_type === 'PAYMENT.SALE.COMPLETED') {
+          console.log('PAYMENT.SALE.COMPLETED***');
+        }
+        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.CREATED') {
+          console.log('BILLING.SUBSCRIPTION.CREATED***');
         }
       } catch (err) {
         console.log(
