@@ -134,47 +134,37 @@ export class PaypalService {
       actualData,
     );
 
-    console.log(
-      verifyWebhookSign.data.verification_status,
-      'verifyWebhookSign.data.verification_status',
-    );
-
     if (verifyWebhookSign.data.verification_status === 'SUCCESS') {
-      console.log(verifyWebhookSign.data, 'verifyWebhookSign.data');
-      console.log(verifyWebhookSign.headers, 'verifyWebhookSign.headers');
-      console.log(
-        verifyWebhookSign.headers.body,
-        'verifyWebhookSign.headers.body',
-      );
       console.log(headers.body, 'HEADERS>BODY');
 
       const subs = await headers.body.resource.subscriber;
       console.log(subs, 'SUBS');
+
       try {
         switch (headers.body.event_type) {
           case 'BILLING.SUBSCRIPTION.CREATED':
-            console.log('BILLING.SUBSCRIPTION.CREATED');
+            console.log('BILLING.SUBSCRIPTION.CREATED***');
 
           case 'BILLING.SUBSCRIPTION.ACTIVATED':
-            console.log('BILLING.SUBSCRIPTION.ACTIVATED');
+            console.log('BILLING.SUBSCRIPTION.ACTIVATED***');
 
           case 'BILLING.SUBSCRIPTION.RE-ACTIVATED':
-            console.log('BILLING.SUBSCRIPTION.RE-ACTIVATED');
+            console.log('BILLING.SUBSCRIPTION.RE-ACTIVATED***');
 
           case 'BILLING.SUBSCRIPTION.CANCELLED':
-            console.log('BILLING.SUBSCRIPTION.CANCELLED');
+            console.log('BILLING.SUBSCRIPTION.CANCELLED***');
 
           case 'BILLING.SUBSCRIPTION.EXPIRED':
-            console.log('BILLING.SUBSCRIPTION.EXPIRED');
+            console.log('BILLING.SUBSCRIPTION.EXPIRED***');
 
           case 'BILLING.SUBSCRIPTION.SUSPENDED':
-            console.log('BILLING.SUBSCRIPTION.SUSPENDED');
+            console.log('BILLING.SUBSCRIPTION.SUSPENDED***');
 
           case 'BILLING.SUBSCRIPTION.PAYMENT.FAILED':
-            console.log('BILLING.SUBSCRIPTION.PAYMENT.FAILED');
+            console.log('BILLING.SUBSCRIPTION.PAYMENT.FAILED***');
 
           case 'PAYMENT.SALE.COMPLETED':
-            console.log('PAYMENT.SALE.COMPLETED');
+            console.log('PAYMENT.SALE.COMPLETED***');
         }
       } catch (err) {
         console.log(
