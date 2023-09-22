@@ -172,9 +172,6 @@ export class PaypalService {
         if (headers.body.event_type === 'PAYMENT.SALE.COMPLETED') {
           console.log('PAYMENT.SALE.COMPLETED***');
         }
-        if (headers.body.event_type === 'BILLING.SUBSCRIPTION.CREATED') {
-          console.log('BILLING.SUBSCRIPTION.CREATED***');
-        }
       } catch (err) {
         console.log(
           `getSubscriptionWebHookCallBack switch case catch error: ${err}`,
