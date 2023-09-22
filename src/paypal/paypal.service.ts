@@ -142,12 +142,9 @@ export class PaypalService {
     );
 
     if (verifyWebhookSign.data.verification_status === 'SUCCESS') {
-      const subs = await verifyWebhookSign.headers.body.resource.subscriber;
+      const subs = await headers.body.resource.subscriber;
 
-      console.log(
-        verifyWebhookSign.headers.body.resource.subscriber,
-        'verifyWebhookSign.headers.body.resource.subscriber',
-      );
+      console.log(subs, 'subs');
 
       try {
         switch (verifyWebhookSign.headers.body.event_type) {
