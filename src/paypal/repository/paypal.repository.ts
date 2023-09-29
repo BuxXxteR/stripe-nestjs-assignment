@@ -62,7 +62,8 @@ export class PaypalRepository {
       console.log(
         `Cannot create subscription: userId=${`userId`} time=${new Date().getTime()} ${err}`,
       );
-      return err;
+
+      throw new Error(`getSubscriptionCallBack: ${err} `);
     }
   }
 

@@ -7,6 +7,7 @@ import { DatabaseModule } from './database/database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StripeModule } from './stripe/stripe.module';
 import { PaypalModule } from './paypal/paypal.module';
+import { CoinPaymentModule } from './coin-payment/coin-payment.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PaypalModule } from './paypal/paypal.module';
     DatabaseModule,
     StripeModule,
     PaypalModule,
+    CoinPaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
